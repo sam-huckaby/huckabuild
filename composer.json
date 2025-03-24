@@ -1,0 +1,24 @@
+{
+    "name": "foundry/cms",
+    "description": "A modern PHP CMS with SQLite",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "slim/slim": "^4.10",
+        "slim/psr7": "^1.5",
+        "php-di/php-di": "^6.4",
+        "illuminate/database": "^9.0",
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Foundry\\": "app/"
+        }
+    },
+    "scripts": {
+        "dev": "php -S localhost:8000 -t public",
+        "post-create-project-cmd": [
+            "php -r \"copy('.env.example', '.env');\""
+        ]
+    }
+} 

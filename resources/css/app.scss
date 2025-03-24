@@ -1,0 +1,71 @@
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Foundry Variables
+$foundry-orange: #ff7700;
+$foundry-dark: #333333;
+$foundry-light: #f8f9fa;
+
+// Theme modes
+[data-bs-theme="light"] {
+    --foundry-bg: #{$foundry-light};
+    --foundry-text: #{$foundry-dark};
+    --foundry-accent: #{$foundry-orange};
+}
+
+[data-bs-theme="dark"] {
+    --foundry-bg: #{$foundry-dark};
+    --foundry-text: #{$foundry-light};
+    --foundry-accent: #{$foundry-orange};
+}
+
+// Foundry Branding
+.foundry-brand {
+    color: $foundry-orange;
+    font-weight: bold;
+}
+
+.foundry-header {
+    color: var(--foundry-text);
+    border-left: 5px solid var(--foundry-accent);
+    padding-left: 15px;
+}
+
+.foundry-text {
+    color: var(--foundry-text);
+}
+
+// Admin sidebar
+.sidebar {
+    min-height: 100vh;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+// Custom button styles
+.btn-foundry {
+    background-color: $foundry-orange;
+    border-color: $foundry-orange;
+    color: white;
+    
+    &:hover {
+        background-color: darken($foundry-orange, 10%);
+        border-color: darken($foundry-orange, 10%);
+        color: white;
+    }
+}
+
+// Card styles
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    .card-header {
+        border-bottom: 2px solid $foundry-orange;
+    }
+}
+
+// Form styles
+.form-control:focus {
+    border-color: $foundry-orange;
+    box-shadow: 0 0 0 0.25rem rgba($foundry-orange, 0.25);
+} 

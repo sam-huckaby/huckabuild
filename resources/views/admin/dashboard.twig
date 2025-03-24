@@ -1,0 +1,44 @@
+{% extends "layouts/admin.twig" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="foundry-header">Dashboard</h1>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Site Statistics</h5>
+                    <p>Total Pages: <strong>{{ pageCount }}</strong></p>
+                    <p>Last Login: <strong>{{ lastLogin|date("F j, Y, g:i a") }}</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2 id="clock" class="display-4">00:00:00</h2>
+                    <p class="lead text-muted">It's always time to build</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+{% endblock %} 

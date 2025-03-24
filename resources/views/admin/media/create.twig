@@ -1,0 +1,36 @@
+{% extends "layouts/admin.twig" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="foundry-header">Upload Files</h1>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/admin/media" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Choose Files</label>
+                            <input type="file" class="form-control" id="file" name="file" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description (optional)</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+
+                        <div class="text-end">
+                            <a href="/admin/media" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-foundry">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

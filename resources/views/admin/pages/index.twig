@@ -1,0 +1,63 @@
+{% extends "layouts/admin.twig" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="foundry-header">Pages</h1>
+        <a href="/admin/pages/create" class="btn btn-foundry">
+            <i class="bi bi-plus-lg"></i> New Page
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Slug</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for page in pages %}
+                        <tr>
+                            <td>{{ page.title }}</td>
+                            <td>{{ page.slug }}</td>
+                            <td>{{ page.created_at|date("M d, Y") }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="/admin/pages/{{ page.id }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" 
+                                            onclick="confirmDelete({{ page.id }})">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="delete-form" method="POST" style="display: none;">
+    <input type="hidden" name="_METHOD" value="DELETE">
+</form>
+
+<script>
+function confirmDelete(id) {
+    if (confirm('Are you sure you want to delete this page?')) {
+        const form = document.getElementById('delete-form');
+        form.action = `/admin/pages/${id}`;
+        form.submit();
+    }
+}
+</script>
+{% endblock %} 

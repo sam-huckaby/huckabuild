@@ -1,0 +1,129 @@
+{% extends "layouts/admin.twig" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="foundry-header">Create New Menu</h1>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/admin/menus" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Menu Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Menu Items</label>
+                            <div id="menu-items" class="list-group mb-3">
+                                <!-- Menu items will be added here -->
+                            </div>
+                            <button type="button" class="btn btn-outline-secondary" onclick="addMenuItem()">
+                                <i class="bi bi-plus-lg"></i> Add Menu Item
+                            </button>
+                        </div>
+
+                        <div class="text-end">
+                            <a href="/admin/menus" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-foundry">Create Menu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="menu-item-template">
+    <div class="list-group-item" draggable="true">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="items[INDEX][title]" 
+                       placeholder="Menu Item Title" required>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <select class="form-select" name="items[INDEX][page_id]">
+                        <option value="">Select a page...</option>
+                        {% for page in pages %}
+                        <option value="{{ page.id }}">{{ page.title }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" 
+                               onchange="toggleExternalUrl(this)">
+                    </div>
+                    <input type="text" class="form-control" name="items[INDEX][external_url]" 
+                           placeholder="External URL" disabled>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-outline-danger" onclick="removeMenuItem(this)">
+                    <i class="bi bi-trash"></i>
+                </button>
+                <span class="ms-2 drag-handle">
+                    <i class="bi bi-grip-vertical"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+<script>
+let menuItemIndex = 0;
+
+function addMenuItem() {
+    const template = document.getElementById('menu-item-template');
+    const menuItems = document.getElementById('menu-items');
+    const clone = template.content.cloneNode(true);
+    
+    // Replace INDEX placeholder with actual index
+    const elements = clone.querySelectorAll('[name*="INDEX"]');
+    elements.forEach(element => {
+        element.name = element.name.replace('INDEX', menuItemIndex);
+    });
+    
+    menuItems.appendChild(clone);
+    menuItemIndex++;
+}
+
+function removeMenuItem(button) {
+    button.closest('.list-group-item').remove();
+}
+
+function toggleExternalUrl(checkbox) {
+    const row = checkbox.closest('.input-group');
+    const select = row.querySelector('select');
+    const input = row.querySelector('input[type="text"]');
+    
+    select.disabled = checkbox.checked;
+    input.disabled = !checkbox.checked;
+}
+
+// Initialize drag and drop
+document.addEventListener('DOMContentLoaded', function() {
+    const menuItems = document.getElementById('menu-items');
+    new Sortable(menuItems, {
+        animation: 150,
+        handle: '.drag-handle',
+        onEnd: function() {
+            // Update indices after drag
+            menuItems.querySelectorAll('.list-group-item').forEach((item, index) => {
+                item.querySelectorAll('[name*="items["]').forEach(input => {
+                    input.name = input.name.replace(/items\[\d+\]/, `items[${index}]`);
+                });
+            });
+        }
+    });
+});
+
+// Add first menu item by default
+addMenuItem();
+</script>
+{% endblock %} 
