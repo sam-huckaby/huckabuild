@@ -1,8 +1,8 @@
 <?php
 
-namespace Foundry\Controllers;
+namespace Huckabuild\Controllers;
 
-use Foundry\Models\Media;
+use Huckabuild\Models\Media;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Psr7\UploadedFile;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Foundry\Models;
+namespace Huckabuild\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

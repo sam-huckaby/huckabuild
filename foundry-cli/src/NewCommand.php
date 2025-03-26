@@ -1,6 +1,6 @@
 <?php
 
-namespace Foundry\Cli;
+namespace Huckabuild\Cli;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,7 +16,7 @@ class NewCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Create a new Foundry application')
+            ->setDescription('Create a new Huckabuild application')
             ->addArgument('name', InputArgument::REQUIRED, 'The name of the application');
     }
 
@@ -31,10 +31,10 @@ class NewCommand extends Command
             return Command::FAILURE;
         }
 
-        $output->writeln("<info>Creating new Foundry application in {$projectName}...</info>");
+        $output->writeln("<info>Creating new Huckabuild application in {$projectName}...</info>");
         
-        // Clone the Foundry repository
-        $process = new Process(['git', 'clone', 'https://github.com/sam-huckaby/foundry.git', $projectName]);
+        // Clone the Huckabuild repository
+        $process = new Process(['git', 'clone', 'https://github.com/sam-huckaby/huckabuild.git', $projectName]);
         $process->run();
 
         if (!$process->isSuccessful()) {
@@ -46,7 +46,7 @@ class NewCommand extends Command
         $fs->remove($projectName . '/.git');
 
         // Create SQLite database
-        $dbPath = $projectName . '/database/foundry.sqlite';
+        $dbPath = $projectName . '/database/huckabuild.sqlite';
         $fs->touch($dbPath);
 
         // Run composer install
@@ -61,10 +61,10 @@ class NewCommand extends Command
         // Copy .env.example to .env
         $fs->copy($projectName . '/.env.example', $projectName . '/.env');
 
-        $output->writeln("<info>Foundry application created successfully!</info>");
+        $output->writeln("<info>Huckabuild application created successfully!</info>");
         $output->writeln("<info>Next steps:</info>");
         $output->writeln("  1. cd {$projectName}");
-        $output->writeln("  2. php foundry serve");
+        $output->writeln("  2. php huckabuild serve");
         $output->writeln("  3. Visit http://localhost:8000");
 
         return Command::SUCCESS;

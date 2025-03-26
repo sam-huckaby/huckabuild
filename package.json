@@ -1,10 +1,10 @@
 {
-    "name": "foundry-cms",
+    "name": "huckabuild/frontend",
     "version": "1.0.0",
-    "description": "Frontend assets for Foundry CMS",
+    "description": "Frontend assets for Huckabuild CMS",
     "repository": {
         "type": "git",
-        "url": "https://github.com/sam-huckaby/foundry.git"
+        "url": "https://github.com/sam-huckaby/huckabuild.git"
     },
     "scripts": {
         "dev": "vite",

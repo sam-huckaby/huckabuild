@@ -16,7 +16,7 @@ class NewCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Create a new Foundry application')
+            ->setDescription('Create a new Huckabuild application')
             ->addArgument('name', InputArgument::REQUIRED, 'The name of the application');
     }
 
@@ -30,7 +30,7 @@ class NewCommand extends Command
             return Command::FAILURE;
         }
 
-        $output->writeln("<info>Creating new Foundry application: {$name}</info>");
+        $output->writeln("<info>Creating new Huckabuild application: {$name}</info>");
         
         // Create the application directory
         mkdir($directory, 0755, true);
@@ -39,7 +39,7 @@ class NewCommand extends Command
         $process = new \Symfony\Component\Process\Process([
             'git',
             'clone',
-            'https://github.com/foundry/cms.git',
+            'https://github.com/sam-huckaby/huckabuild.git',
             $directory
         ]);
         
@@ -62,12 +62,12 @@ class NewCommand extends Command
             mkdir($databaseDir, 0755, true);
         }
         
-        touch($databaseDir . '/foundry.sqlite');
+        touch($databaseDir . '/huckabuild.sqlite');
         
         // Initialize the database
         $process = new \Symfony\Component\Process\Process([
             'sqlite3',
-            $databaseDir . '/foundry.sqlite',
+            $databaseDir . '/huckabuild.sqlite',
             '.read database/schema.sql'
         ], $directory);
         
@@ -84,6 +84,6 @@ class NewCommand extends Command
     }
 }
 
-$application = new Application('Foundry Installer', '1.0.0');
+$application = new Application('Huckabuild Installer', '1.0.0');
 $application->add(new NewCommand());
 $application->run(); 

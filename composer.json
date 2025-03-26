@@ -27,8 +27,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Foundry\\": "app/",
-            "Foundry\\Cli\\": "foundry-cli/src/"
+            "Huckabuild\\": "app/",
+            "Huckabuild\\Cli\\": "huckabuild-cli/src/"
         }
     },
     "scripts": {

@@ -69,8 +69,8 @@ CREATE TABLE settings (
 
 -- Insert default data
 INSERT INTO pages (slug, title, content) VALUES 
-('landing', 'Welcome to Foundry', '<div class="container"><h1 class="foundry-header">Start Your Journey</h1><p class="foundry-text">Foundry is an excellent place to start your journey building a web app. With our intuitive interface and powerful features, you can create beautiful websites in minutes.</p></div>');
+('landing', 'Welcome to Huckabuild', '<div class="container"><h1 class="huckabuild-header">Start Your Journey</h1><p class="huckabuild-text">Huckabuild is an excellent place to start your journey building a web app. With our intuitive interface and powerful features, you can create beautiful websites in minutes.</p></div>');
 
 INSERT INTO settings (key, value) VALUES
 ('theme_mode', 'light'),
-('site_name', 'Foundry Site'); 
+('site_name', 'Huckabuild Site'); 

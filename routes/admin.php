@@ -1,11 +1,11 @@
 <?php
 
-use Foundry\Controllers\AdminController;
-use Foundry\Controllers\PageAdminController;
-use Foundry\Controllers\MenuAdminController;
-use Foundry\Controllers\MediaAdminController;
-use Foundry\Controllers\UserAdminController;
-use Foundry\Middleware\AuthMiddleware;
+use Huckabuild\Controllers\AdminController;
+use Huckabuild\Controllers\PageAdminController;
+use Huckabuild\Controllers\MenuAdminController;
+use Huckabuild\Controllers\MediaAdminController;
+use Huckabuild\Controllers\UserAdminController;
+use Huckabuild\Middleware\AuthMiddleware;
 use Slim\Routing\RouteCollectorProxy;
 
 // Admin routes

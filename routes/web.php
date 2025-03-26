@@ -1,8 +1,8 @@
 <?php
 
-use Foundry\Controllers\PageController;
-use Foundry\Controllers\AuthController;
-use Foundry\Middleware\GuestMiddleware;
+use Huckabuild\Controllers\PageController;
+use Huckabuild\Controllers\AuthController;
+use Huckabuild\Middleware\GuestMiddleware;
 use Slim\Routing\RouteCollectorProxy;
 
 // Public routes

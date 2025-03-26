@@ -1,8 +1,8 @@
 <?php
 
-namespace Foundry\Controllers;
+namespace Huckabuild\Controllers;
 
-use Foundry\Models\User;
+use Huckabuild\Models\User;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 

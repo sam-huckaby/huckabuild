@@ -1,6 +1,6 @@
-# Foundry CMS
+# Huckabuild CMS
 
-Foundry is a modern PHP Content Management System built with SQLite, designed to be lightweight, fast, and developer-friendly.
+Huckabuild is a modern PHP Content Management System built with SQLite, designed to be lightweight, fast, and developer-friendly.
 
 ## Table of Contents
 - [Requirements](#requirements)
@@ -19,14 +19,14 @@ Foundry is a modern PHP Content Management System built with SQLite, designed to
 
 ## Installation
 
-1. Create a new Foundry project using Composer:
+1. Create a new Huckabuild project using Composer:
 ```bash
-composer create-project foundry/cms my-foundry-site
+composer create-project huckabuild/cms my-huckabuild-site
 ```
 
 2. Navigate to your project directory:
 ```bash
-cd my-foundry-site
+cd my-huckabuild-site
 ```
 
 3. The installation process will automatically create a `.env` file from `.env.example`. Make sure to review and update the environment variables as needed.
@@ -36,7 +36,7 @@ cd my-foundry-site
 composer dev
 ```
 
-Your Foundry site should now be running at `http://localhost:8000`
+Your Huckabuild site should now be running at `http://localhost:8000`
 
 ## Quick Start
 
@@ -47,19 +47,19 @@ After installation, you'll need to:
 1. Configure your database settings in `.env`
 2. Run database migrations (if any):
 ```bash
-php foundry migrate
+php huckabuild migrate
 ```
 
 ### Common Commands
 
 - Start development server: `composer dev`
-- Create a new page: `php foundry make:page`
-- Create a new template: `php foundry make:template`
+- Create a new page: `php huckabuild make:page`
+- Create a new template: `php huckabuild make:template`
 
-> **Note:** Make sure you're running all commands from the root directory of your Foundry installation.
+> **Note:** Make sure you're running all commands from the root directory of your Huckabuild installation.
 
 ## Project Structure 
-foundry/
+huckabuild/
 ├── app/ # Application core files
 │ ├── Controllers/ # Request handlers
 │ ├── Models/ # Database models
@@ -99,7 +99,7 @@ composer dev
 
 ## Contributing
 
-We welcome contributions to Foundry! Here's how you can help:
+We welcome contributions to Huckabuild! Here's how you can help:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -111,7 +111,7 @@ We welcome contributions to Foundry! Here's how you can help:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/sam-huckaby/foundry.git
+git clone https://github.com/sam-huckaby/huckabuild.git
 ```
 
 2. Install dependencies:
@@ -139,9 +139,9 @@ cp .env.example .env
 
 ## Support
 
-For bugs and feature requests, please use the [GitHub Issues](https://github.com/sam-huckaby/foundry/issues) page.
+For bugs and feature requests, please use the [GitHub Issues](https://github.com/sam-huckaby/huckabuild/issues) page.
 
 ---
 
-Built with ♥ by the Foundry team
+Built with ♥ by Sam Huckaby
 
