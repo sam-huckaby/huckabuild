@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Foundry\Cli\NewCommand;
+use Foundry\Cli\ServeCommand;
+
+$application = new Application('Foundry', '1.0.0');
+$application->add(new NewCommand());
+$application->add(new ServeCommand());
+$application->run(); 

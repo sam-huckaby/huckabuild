@@ -2,6 +2,10 @@
     "name": "foundry-cms",
     "version": "1.0.0",
     "description": "Frontend assets for Foundry CMS",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sam-huckaby/foundry.git"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vite build"

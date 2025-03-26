@@ -2,6 +2,10 @@
     "name": "foundry/cms",
     "description": "A modern PHP CMS with SQLite",
     "type": "project",
+    "license": "MIT",
+    "config": {
+        "sort-packages": true
+    },
     "require": {
         "php": "^8.1",
         "slim/slim": "^4.10",
