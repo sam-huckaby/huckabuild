@@ -82,9 +82,14 @@ huckabuild/
 ├── app/                    # Application core files
 │   ├── Controllers/       # Request handlers
 │   ├── Models/           # Database models
-│   └── Views/            # Template files
+│   └── Middleware/       # Request/Response middleware
 ├── public/                # Web server root directory
 │   └── index.php         # Application entry point
+├── resources/             # Frontend resources
+│   └── views/            # Twig templates
+│       ├── admin/        # Admin panel templates
+│       ├── layouts/      # Base layout templates
+│       └── pages/        # Public page templates
 ├── config/               # Configuration files
 ├── database/             # Database files and migrations
 ├── storage/              # File uploads and cache
