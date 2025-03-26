@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+Always read the section labelled "AI Context" in [README.md](mdc:README.md) first

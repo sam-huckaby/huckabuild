@@ -1,0 +1,78 @@
+/* Huckabuild Variables */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --huckabuild-orange: #ff7700;
+    --huckabuild-dark: #333333;
+    --huckabuild-light: #f8f9fa;
+}
+
+/* Theme modes */
+[data-bs-theme="light"] {
+    --huckabuild-bg: var(--huckabuild-light);
+    --huckabuild-text: var(--huckabuild-dark);
+    --huckabuild-accent: var(--huckabuild-orange);
+}
+
+[data-bs-theme="dark"] {
+    --huckabuild-bg: var(--huckabuild-dark);
+    --huckabuild-text: var(--huckabuild-light);
+    --huckabuild-accent: var(--huckabuild-orange);
+}
+
+/* Huckabuild Branding */
+.huckabuild-brand {
+    color: var(--huckabuild-orange);
+    font-weight: bold;
+}
+
+.huckabuild-header {
+    color: var(--huckabuild-text);
+    border-left: 5px solid var(--huckabuild-accent);
+    padding-left: 15px;
+}
+
+.huckabuild-text {
+    color: var(--huckabuild-text);
+}
+
+.text-orange {
+    color: var(--huckabuild-orange) !important;
+}
+
+/* Admin sidebar */
+.sidebar {
+    min-height: 100vh;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+/* Custom button styles */
+.btn-huckabuild {
+    background-color: var(--huckabuild-orange);
+    border-color: var(--huckabuild-orange);
+    color: white;
+}
+
+.btn-huckabuild:hover {
+    background-color: #e66b00;
+    border-color: #e66b00;
+    color: white;
+}
+
+/* Card styles */
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card .card-header {
+    border-bottom: 2px solid var(--huckabuild-orange);
+}
+
+/* Form styles */
+.form-control:focus {
+    border-color: var(--huckabuild-orange);
+    box-shadow: 0 0 0 0.25rem rgba(255, 119, 0, 0.25);
+} 

@@ -1,11 +1,75 @@
-{% extends "layouts/base.twig" %}
+{% extends "layouts/frontend.twig" %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-6">Welcome to Huckabuild</h1>
-    <p class="text-lg mb-4">A modern PHP CMS with SQLite</p>
-    <div class="prose">
-        <p>This is the home page of your new Huckabuild installation. You can customize this content by editing the template file.</p>
+<!-- Hero Section -->
+<div class="container-fluid bg-dark text-light py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-3 fw-bold mb-4">Build Faster with <span class="huckabuild-brand">Huckabuild</span></h1>
+                <p class="lead mb-4">A modern, lightweight PHP CMS powered by SQLite. Perfect for developers who want to build beautiful websites without the complexity.</p>
+                <div class="d-flex gap-3">
+                    <a href="/docs/getting-started" class="btn btn-huckabuild btn-lg">
+                        <i class="bi bi-rocket-takeoff me-2"></i>Get Started
+                    </a>
+                    <a href="https://github.com/yourusername/huckabuild" class="btn btn-outline-light btn-lg">
+                        <i class="bi bi-github me-2"></i>View on GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block text-center">
+                <i class="bi bi-code-square display-1 text-orange mb-4"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Why Choose Huckabuild?</h2>
+        <p class="lead text-muted">Everything you need to build modern websites, nothing you don't.</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <i class="bi bi-lightning-charge display-4 text-orange mb-3"></i>
+                    <h3 class="h4 mb-3">Lightning Fast</h3>
+                    <p class="text-muted">Built with performance in mind. SQLite database means no complex setup or configuration.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <i class="bi bi-shield-check display-4 text-orange mb-3"></i>
+                    <h3 class="h4 mb-3">Secure by Default</h3>
+                    <p class="text-muted">Modern security practices built-in. Protection against common vulnerabilities out of the box.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <i class="bi bi-brush display-4 text-orange mb-3"></i>
+                    <h3 class="h4 mb-3">Beautiful Admin</h3>
+                    <p class="text-muted">Intuitive admin interface that makes content management a breeze.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="container-fluid bg-light py-5">
+    <div class="container py-5 text-center">
+        <h2 class="display-5 fw-bold mb-4">Ready to Get Started?</h2>
+        <p class="lead mb-4">Join developers who are building better websites with Huckabuild.</p>
+        <a href="/docs/installation" class="btn btn-huckabuild btn-lg">
+            <i class="bi bi-download me-2"></i>Install Huckabuild
+        </a>
     </div>
 </div>
 {% endblock %} 

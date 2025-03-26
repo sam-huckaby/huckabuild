@@ -1,9 +1,11 @@
 <?php
 
-use DI\Container;
+use DI\ContainerBuilder;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
+use Twig\Loader\FilesystemLoader;
+use Psr\Container\ContainerInterface;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -12,7 +14,17 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 // Create Container
-$container = new Container();
+$containerBuilder = new ContainerBuilder();
+$containerBuilder->addDefinitions([
+    Twig::class => function () {
+        $loader = new FilesystemLoader(__DIR__ . '/../resources/views');
+        return new Twig($loader);
+    },
+    'view' => function (ContainerInterface $c) {
+        return $c->get(Twig::class);
+    }
+]);
+$container = $containerBuilder->build();
 
 // Set up database connection
 $container->set('db', function () {
@@ -25,13 +37,6 @@ $container->set('db', function () {
     $capsule->setAsGlobal();
     $capsule->bootEloquent();
     return $capsule;
-});
-
-// Set up Twig views
-$container->set('view', function () {
-    return Twig::create(__DIR__ . '/../resources/views', [
-        'cache' => false,
-    ]);
 });
 
 // Create App

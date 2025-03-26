@@ -112,8 +112,8 @@ composer dev
 
 - **app/**: Contains the core application code
 - **public/**: The only directory that should be publicly accessible
-- **storage/**: Must be writable by your web server
-- **config/**: Contains all configuration files
+- **resources/**: Contains frontend assets, views, and templates
+- **routes/**: Contains all route definitions and URL mappings
 
 ### Common Gotchas
 
@@ -169,4 +169,48 @@ For bugs and feature requests, please use the [GitHub Issues](https://github.com
 ---
 
 Built with ♥ by Sam Huckaby
+
+---
+
+## AI Context
+
+This section provides comprehensive context for AI agents working with Huckabuild.
+
+### Core Architecture
+- Built on PHP 8.1+ with SQLite as the primary database
+- Follows MVC architecture with Twig templating
+- Uses a CLI-first approach for development and management
+- Implements PSR-12 coding standards and modern PHP practices
+
+### Key Components
+- **Routing**: Handled through the `routes/` directory with a simple, declarative syntax
+- **Controllers**: Located in `app/Controllers/`, following RESTful conventions
+- **Models**: SQLite-based ORM in `app/Models/` with active record pattern
+- **Views**: Twig templates in `resources/views/` with layouts and partials support
+- **CLI**: Built-in command system in `huckabuild-cli/` for common operations
+
+### Development Workflow
+- Development server runs on port 8000 by default
+- Uses Composer for dependency management
+- Environment configuration through `.env` file
+- Database migrations handled through CLI commands
+- Frontend assets managed through Node.js/npm
+
+### Common Operations
+- Page creation: `php huckabuild make:page`
+- Template creation: `php huckabuild make:template`
+- Database migrations: `php huckabuild migrate`
+- Development server: `composer dev`
+
+### Technical Decisions
+- SQLite chosen for simplicity and zero-config deployment
+- Twig templating for secure, flexible view rendering
+- CLI-first approach for better developer experience
+- No external dependencies beyond PHP core and SQLite
+
+### Project Philosophy
+- Emphasis on simplicity and developer experience
+- Minimal configuration required
+- Built for small to medium-sized projects
+- Focus on performance and maintainability
 

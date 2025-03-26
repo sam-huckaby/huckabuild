@@ -1,21 +1,23 @@
 {
-    "name": "huckabuild/frontend",
+    "name": "huckabuild",
     "version": "1.0.0",
-    "description": "Frontend assets for Huckabuild CMS",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/sam-huckaby/huckabuild.git"
-    },
+    "description": "Huckabuild CMS",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "sass:watch": "sass --watch resources/css:public/css",
+        "sass:build": "sass resources/css:public/css"
     },
     "dependencies": {
         "bootstrap": "^5.2.3",
         "bootstrap-icons": "^1.10.3"
     },
     "devDependencies": {
+        "concurrently": "^8.0.1",
         "sass": "^1.58.0",
-        "vite": "^4.1.1"
+        "vite": "^4.1.1",
+        "tailwindcss": "^3.3.0",
+        "postcss": "^8.4.21",
+        "autoprefixer": "^10.4.14"
     }
 } 
