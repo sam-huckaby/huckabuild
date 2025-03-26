@@ -2,6 +2,10 @@
 
 Huckabuild is a modern PHP Content Management System built with SQLite, designed to be lightweight, fast, and developer-friendly.
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/huckabuild/huckabuild.svg?style=flat-square)](https://packagist.org/packages/huckabuild/huckabuild)
+[![Total Downloads](https://img.shields.io/packagist/dt/huckabuild/huckabuild.svg?style=flat-square)](https://packagist.org/packages/huckabuild/huckabuild)
+[![License](https://img.shields.io/packagist/l/huckabuild/huckabuild.svg?style=flat-square)](https://packagist.org/packages/huckabuild/huckabuild)
+
 ## Table of Contents
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -19,19 +23,32 @@ Huckabuild is a modern PHP Content Management System built with SQLite, designed
 
 ## Installation
 
-1. Create a new Huckabuild project using Composer:
+### Creating a New Project
+
+You can create a new Huckabuild project using Composer:
+
 ```bash
-composer create-project huckabuild/cms my-huckabuild-site
+composer create-project huckabuild/huckabuild my-huckabuild-site
 ```
 
-2. Navigate to your project directory:
+### Adding to an Existing Project
+
+If you want to add Huckabuild to an existing project, you can install it via Composer:
+
+```bash
+composer require huckabuild/huckabuild
+```
+
+### Post-Installation Steps
+
+1. Navigate to your project directory:
 ```bash
 cd my-huckabuild-site
 ```
 
-3. The installation process will automatically create a `.env` file from `.env.example`. Make sure to review and update the environment variables as needed.
+2. The installation process will automatically create a `.env` file from `.env.example`. Make sure to review and update the environment variables as needed.
 
-4. Start the development server:
+3. Start the development server:
 ```bash
 composer dev
 ```
@@ -59,20 +76,23 @@ php huckabuild migrate
 > **Note:** Make sure you're running all commands from the root directory of your Huckabuild installation.
 
 ## Project Structure 
+
+```
 huckabuild/
-├── app/ # Application core files
-│ ├── Controllers/ # Request handlers
-│ ├── Models/ # Database models
-│ └── Views/ # Template files
-├── public/ # Web server root directory
-│ └── index.php # Application entry point
-├── config/ # Configuration files
-├── database/ # Database files and migrations
-├── storage/ # File uploads and cache
-├── tests/ # Test files
-├── .env # Environment configuration
-├── .env.example # Example environment configuration
-└── composer.json # PHP dependencies and scripts
+├── app/                    # Application core files
+│   ├── Controllers/       # Request handlers
+│   ├── Models/           # Database models
+│   └── Views/            # Template files
+├── public/                # Web server root directory
+│   └── index.php         # Application entry point
+├── config/               # Configuration files
+├── database/             # Database files and migrations
+├── storage/              # File uploads and cache
+├── tests/                # Test files
+├── .env                  # Environment configuration
+├── .env.example          # Example environment configuration
+└── composer.json         # PHP dependencies and scripts
+```
 
 ## Development
 
@@ -135,7 +155,7 @@ cp .env.example .env
 
 ## License
 
-[Add your license information here]
+This package is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Support
 
