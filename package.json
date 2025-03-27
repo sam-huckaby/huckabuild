@@ -5,8 +5,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "sass:watch": "sass --watch resources/css:public/css",
-        "sass:build": "sass resources/css:public/css"
+        "watch": "vite build --watch"
     },
     "dependencies": {
         "bootstrap": "^5.2.3",

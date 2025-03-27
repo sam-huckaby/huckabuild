@@ -8,6 +8,13 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class AuthController
 {
+    private $container;
+
+    public function __construct(\Psr\Container\ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function showLoginForm(Request $request, Response $response)
     {
         return $this->container->get('view')->render($response, 'auth/login.twig');

@@ -7,45 +7,41 @@
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
-<body>
+<body class="bg-white">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand huckabuild-brand" href="/">{{ site_name|default('Huckabuild') }}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+    <nav class="bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="/" class="text-[#ff7700] font-bold text-xl">Huckabuild</a>
+                <button class="lg:hidden p-2 rounded-md hover:bg-gray-800 focus:outline-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="bi bi-list text-2xl"></i>
+                </button>
+                <div class="hidden lg:flex lg:items-center lg:space-x-8" id="navbarNav">
                     {% for item in menu_items %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ item.url }}">{{ item.title }}</a>
-                        </li>
+                        <a href="{{ item.url }}" class="text-gray-300 hover:text-white transition-colors">{{ item.title }}</a>
                     {% endfor %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">
-                            <i class="bi bi-person-circle"></i>
-                        </a>
-                    </li>
-                </ul>
+                    <a href="/login" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="bi bi-person-circle text-xl"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Main content -->
-    <main class="py-4">
+    <main>
         {% block content %}{% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5 class="huckabuild-brand">Huckabuild</h5>
-                    <p>A modern PHP CMS with SQLite</p>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <h5 class="text-[#ff7700] font-bold text-xl mb-2">Huckabuild</h5>
+                    <p class="text-gray-400">A modern PHP CMS with SQLite</p>
                 </div>
-                <div class="col-md-6 text-md-end">
+                <div class="text-gray-400">
                     <p>&copy; {{ "now"|date("Y") }} Huckabuild CMS</p>
                 </div>
             </div>

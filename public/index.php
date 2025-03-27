@@ -13,6 +13,9 @@ require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
+// Initialize database connection
+require __DIR__ . '/../app/database.php';
+
 // Create Container
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions([
@@ -25,19 +28,6 @@ $containerBuilder->addDefinitions([
     }
 ]);
 $container = $containerBuilder->build();
-
-// Set up database connection
-$container->set('db', function () {
-    $capsule = new \Illuminate\Database\Capsule\Manager;
-    $capsule->addConnection([
-        'driver' => 'sqlite',
-        'database' => __DIR__ . '/../database/huckabuild.sqlite',
-        'prefix' => '',
-    ]);
-    $capsule->setAsGlobal();
-    $capsule->bootEloquent();
-    return $capsule;
-});
 
 // Create App
 AppFactory::setContainer($container);
