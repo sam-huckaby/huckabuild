@@ -1,6 +1,6 @@
-{% extends "layouts/admin.twig" %}
+{extends "../../layouts/admin.latte"}
 
-{% block content %}
+{block content}
 <div class="min-h-screen bg-gray-50">
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -17,41 +17,41 @@
         <!-- Media Grid -->
         <div class="mt-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {% for file in media %}
+                {foreach $media as $file}
                 <div class="bg-white rounded-lg shadow overflow-hidden">
-                    {% if file.mime_type starts with 'image/' %}
+                    {if str_starts_with($file->mime_type, 'image/')}
                     <div class="aspect-w-16 aspect-h-9">
-                        <img src="{{ file.file_path }}" class="object-cover w-full h-full" alt="{{ file.original_filename }}">
+                        <img src="{$file->file_path}" class="object-cover w-full h-full" alt="{$file->original_filename}">
                     </div>
-                    {% else %}
+                    {else}
                     <div class="aspect-w-16 aspect-h-9 bg-gray-50 flex items-center justify-center">
                         <i class="bi bi-file-earmark-text text-6xl text-gray-400"></i>
                     </div>
-                    {% endif %}
+                    {/if}
                     <div class="p-4">
-                        <h3 class="text-sm font-medium text-gray-900 truncate">{{ file.original_filename }}</h3>
+                        <h3 class="text-sm font-medium text-gray-900 truncate">{$file->original_filename}</h3>
                         <p class="mt-1 text-sm text-gray-500">
-                            {{ (file.file_size / 1024)|round(2) }} KB
+                            {round($file->file_size / 1024, 2)} KB
                             <br>
-                            {{ file.mime_type }}
+                            {$file->mime_type}
                         </p>
                         <div class="mt-4 flex space-x-2">
-                            <button type="button" onclick="copyPath('{{ file.file_path }}')"
+                            <button type="button" onclick="copyPath('{$file->file_path}')"
                                     class="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
                                 <i class="bi bi-clipboard mr-1.5"></i>Copy Path
                             </button>
-                            <a href="{{ file.file_path }}" target="_blank"
+                            <a href="{$file->file_path}" target="_blank"
                                class="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
                                 <i class="bi bi-eye mr-1.5"></i>View
                             </a>
-                            <button type="button" onclick="confirmDelete({{ file.id }})"
+                            <button type="button" onclick="confirmDelete({$file->id})"
                                     class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                 <i class="bi bi-trash mr-1.5"></i>Delete
                             </button>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+                {/foreach}
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
     <input type="hidden" name="_METHOD" value="DELETE">
 </form>
 
-<script>
+<script n:syntax=off>
 function confirmDelete(id) {
     if (confirm('Are you sure you want to delete this file?')) {
         const form = document.getElementById('delete-form');
@@ -76,4 +76,4 @@ function copyPath(path) {
     });
 }
 </script>
-{% endblock %} 
+{/block} 

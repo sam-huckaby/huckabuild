@@ -1,6 +1,6 @@
-{% extends "layouts/admin.twig" %}
+{layout '../layouts/admin.latte'}
 
-{% block content %}
+{block content}
 <div class="min-h-screen bg-gray-50">
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -23,7 +23,7 @@
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">Total Pages</dt>
                                 <dd class="flex items-baseline">
-                                    <div class="text-2xl font-semibold text-gray-900">{{ pageCount }}</div>
+                                    <div class="text-2xl font-semibold text-gray-900">{$pageCount}</div>
                                 </dd>
                             </dl>
                         </div>
@@ -42,7 +42,7 @@
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">Last Login</dt>
                                 <dd class="flex items-baseline">
-                                    <div class="text-2xl font-semibold text-gray-900">{{ lastLogin|date("F j, Y") }}</div>
+                                    <div class="text-2xl font-semibold text-gray-900">{$lastLogin|date:"F j, Y"}</div>
                                 </dd>
                             </dl>
                         </div>
@@ -88,7 +88,7 @@
     </div>
 </div>
 
-<script>
+<script n:syntax=off>
 function updateClock() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
@@ -100,4 +100,4 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 </script>
-{% endblock %} 
+{/block} 

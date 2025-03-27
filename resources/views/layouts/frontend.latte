@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="{{ theme_mode|default('light') }}">
+<html lang="en" data-bs-theme="{$theme_mode ?? 'light'}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title|default('Huckabuild Site') }}</title>
+    <title>{$page_title ?? 'Huckabuild Site'}</title>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
@@ -17,21 +17,21 @@
                     <i class="bi bi-list text-2xl"></i>
                 </button>
                 <div class="hidden lg:flex lg:items-center lg:space-x-8" id="navbarNav">
-                    {% for item in menu_items %}
-                        <a href="{{ item.url }}" class="text-gray-300 hover:text-white transition-colors">{{ item.title }}</a>
-                    {% endfor %}
-                    {% if auth.isLoggedIn %}
+                    {foreach $menu_items as $item}
+                        <a href="{$item->url}" class="text-gray-300 hover:text-white transition-colors">{$item->title}</a>
+                    {/foreach}
+                    {if $auth->isLoggedIn}
                         <a href="/admin" class="text-gray-300 hover:text-white transition-colors mr-4">
-                            <span>{{ auth.displayName }}</span>
+                            <span>{$auth->displayName}</span>
                         </a>
                         <a href="/logout" class="text-gray-300 hover:text-white transition-colors">
                             <i class="bi bi-box-arrow-right text-xl"></i>
                         </a>
-                    {% else %}
+                    {else}
                         <a href="/login" class="text-gray-300 hover:text-white transition-colors">
                             <i class="bi bi-person-circle text-xl"></i>
                         </a>
-                    {% endif %}
+                    {/if}
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
 
     <!-- Main content -->
     <main>
-        {% block content %}{% endblock %}
+        {include content}
     </main>
 
     <!-- Footer -->
@@ -51,7 +51,7 @@
                     <p class="text-gray-400">A modern PHP CMS with SQLite</p>
                 </div>
                 <div class="text-gray-400">
-                    <p>&copy; {{ "now"|date("Y") }} Huckabuild CMS</p>
+                    <p>&copy; {date('Y')} Huckabuild CMS</p>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ class AdminController
         $user = User::find($_SESSION['user_id']);
         $pageCount = Page::count();
 
-        return $this->container->get('view')->render($response, 'admin/dashboard.twig', [
+        return $this->container->get('view')->render($response, 'admin/dashboard.latte', [
             'user' => $user,
             'pageCount' => $pageCount,
             'lastLogin' => $user->last_login

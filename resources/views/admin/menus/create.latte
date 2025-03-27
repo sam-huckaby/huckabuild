@@ -1,6 +1,6 @@
-{% extends "layouts/admin.twig" %}
+{extends "../../layouts/admin.latte"}
 
-{% block content %}
+{block content}
 <div class="min-h-screen bg-gray-50">
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -65,9 +65,9 @@
                     <select class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
                             name="items[INDEX][page_id]">
                         <option value="">Select a page...</option>
-                        {% for page in pages %}
-                        <option value="{{ page.id }}">{{ page.title }}</option>
-                        {% endfor %}
+                        {foreach $pages as $page}
+                        <option value="{$page->id}">{$page->title}</option>
+                        {/foreach}
                     </select>
                     <div class="flex items-center">
                         <input type="checkbox" class="h-4 w-4 text-[#ff7700] focus:ring-[#ff7700] border-gray-300 rounded"
@@ -142,4 +142,4 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add first menu item by default
 addMenuItem();
 </script>
-{% endblock %} 
+{/block} 

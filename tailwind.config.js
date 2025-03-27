@@ -3,6 +3,7 @@ export default {
   content: [
     "./resources/views/**/*.php",
     "./resources/views/**/*.twig",
+    "./resources/views/**/*.latte",
     "./resources/js/**/*.js",
   ],
   theme: {

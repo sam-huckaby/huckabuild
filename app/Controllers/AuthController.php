@@ -17,7 +17,7 @@ class AuthController
 
     public function showLoginForm(Request $request, Response $response)
     {
-        return $this->container->get('view')->render($response, 'auth/login.twig');
+        return $this->container->get('view')->render($response, 'auth/login.latte');
     }
 
     public function login(Request $request, Response $response)
@@ -29,7 +29,7 @@ class AuthController
         $user = User::where('username', $username)->first();
 
         if (!$user || !$user->verifyPassword($password)) {
-            return $this->container->get('view')->render($response, 'auth/login.twig', [
+            return $this->container->get('view')->render($response, 'auth/login.latte', [
                 'error' => 'Invalid username or password'
             ]);
         }

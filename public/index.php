@@ -2,9 +2,7 @@
 
 use DI\ContainerBuilder;
 use Slim\Factory\AppFactory;
-use Slim\Views\Twig;
-use Slim\Views\TwigMiddleware;
-use Twig\Loader\FilesystemLoader;
+use Huckabuild\Services\LatteService;
 use Psr\Container\ContainerInterface;
 use Huckabuild\Middleware\ViewAuthMiddleware;
 
@@ -29,12 +27,11 @@ require __DIR__ . '/../app/database.php';
 // Create Container
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions([
-    Twig::class => function () {
-        $loader = new FilesystemLoader(__DIR__ . '/../resources/views');
-        return new Twig($loader);
+    LatteService::class => function () {
+        return new LatteService();
     },
     'view' => function (ContainerInterface $c) {
-        return $c->get(Twig::class);
+        return $c->get(LatteService::class);
     }
 ]);
 $container = $containerBuilder->build();
@@ -44,7 +41,6 @@ AppFactory::setContainer($container);
 $app = AppFactory::create();
 
 // Add middleware
-$app->add(TwigMiddleware::createFromContainer($app));
 $app->add(new ViewAuthMiddleware($container->get('view')));
 $app->addBodyParsingMiddleware();
 $app->addErrorMiddleware(true, true, true);

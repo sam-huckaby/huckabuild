@@ -20,14 +20,14 @@ class MediaAdminController
     public function index(Request $request, Response $response)
     {
         $media = Media::orderBy('created_at', 'desc')->get();
-        return $this->container->get('view')->render($response, 'admin/media/index.twig', [
+        return $this->container->get('view')->render($response, 'admin/media/index.latte', [
             'media' => $media
         ]);
     }
 
     public function create(Request $request, Response $response)
     {
-        return $this->container->get('view')->render($response, 'admin/media/create.twig');
+        return $this->container->get('view')->render($response, 'admin/media/create.latte');
     }
 
     public function store(Request $request, Response $response)
@@ -61,7 +61,7 @@ class MediaAdminController
     public function edit(Request $request, Response $response, $args)
     {
         $media = Media::findOrFail($args['id']);
-        return $this->container->get('view')->render($response, 'admin/media/edit.twig', [
+        return $this->container->get('view')->render($response, 'admin/media/edit.latte', [
             'media' => $media
         ]);
     }

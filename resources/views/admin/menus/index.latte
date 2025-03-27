@@ -1,6 +1,6 @@
-{% extends "layouts/admin.twig" %}
+{extends "../../layouts/admin.latte"}
 
-{% block content %}
+{block content}
 <div class="min-h-screen bg-gray-50">
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -28,40 +28,40 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            {% for menu in menus %}
+                            {foreach $menus as $menu}
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ menu.name }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ menu.items|length }} items</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{$menu->name}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{count($menu->items)} items</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {% if menu.is_active %}
+                                    {if $menu->is_active}
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                             Active
                                         </span>
-                                    {% else %}
+                                    {else}
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                                             Inactive
                                         </span>
-                                    {% endif %}
+                                    {/if}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div class="flex justify-end space-x-2">
-                                        <a href="/admin/menus/{{ menu.id }}" class="text-[#ff7700] hover:text-[#e66b00]">
+                                        <a href="/admin/menus/{$menu->id}" class="text-[#ff7700] hover:text-[#e66b00]">
                                             <i class="bi bi-pencil"></i>
                                         </a>
-                                        {% if not menu.is_active %}
-                                        <form action="/admin/menus/{{ menu.id }}/activate" method="POST" class="inline">
+                                        {if !$menu->is_active}
+                                        <form action="/admin/menus/{$menu->id}/activate" method="POST" class="inline">
                                             <button type="submit" class="text-green-600 hover:text-green-900">
                                                 <i class="bi bi-check-lg"></i>
                                             </button>
                                         </form>
-                                        {% endif %}
-                                        <button type="button" onclick="confirmDelete({{ menu.id }})" class="text-red-600 hover:text-red-900">
+                                        {/if}
+                                        <button type="button" onclick="confirmDelete({$menu->id})" class="text-red-600 hover:text-red-900">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
-                            {% endfor %}
+                            {/foreach}
                         </tbody>
                     </table>
                 </div>
@@ -74,7 +74,7 @@
     <input type="hidden" name="_METHOD" value="DELETE">
 </form>
 
-<script>
+<script n:syntax=off>
 function confirmDelete(id) {
     if (confirm('Are you sure you want to delete this menu?')) {
         const form = document.getElementById('delete-form');
@@ -83,4 +83,4 @@ function confirmDelete(id) {
     }
 }
 </script>
-{% endblock %} 
+{/block} 

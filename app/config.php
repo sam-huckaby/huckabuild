@@ -1,14 +1,12 @@
 <?php
 
 use DI\ContainerBuilder;
-use Slim\Views\Twig;
-use Twig\Loader\FilesystemLoader;
+use Huckabuild\Services\LatteService;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
-        Twig::class => function () {
-            $loader = new FilesystemLoader(__DIR__ . '/../templates');
-            return new Twig($loader);
+        LatteService::class => function () {
+            return new LatteService();
         }
     ]);
 }; 

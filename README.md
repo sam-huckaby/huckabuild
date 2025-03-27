@@ -86,7 +86,7 @@ huckabuild/
 ├── public/                # Web server root directory
 │   └── index.php         # Application entry point
 ├── resources/             # Frontend resources
-│   └── views/            # Twig templates
+│   └── views/            # Latte templates
 │       ├── admin/        # Admin panel templates
 │       ├── layouts/      # Base layout templates
 │       └── pages/        # Public page templates
@@ -178,7 +178,7 @@ This section provides comprehensive context for AI agents working with Huckabuil
 
 ### Core Architecture
 - Built on PHP 8.1+ with SQLite as the primary database
-- Follows MVC architecture with Twig templating
+- Follows MVC architecture with Latte templating
 - Uses a CLI-first approach for development and management
 - Implements PSR-12 coding standards and modern PHP practices
 
@@ -186,7 +186,7 @@ This section provides comprehensive context for AI agents working with Huckabuil
 - **Routing**: Handled through the `routes/` directory with a simple, declarative syntax
 - **Controllers**: Located in `app/Controllers/`, following RESTful conventions
 - **Models**: SQLite-based ORM in `app/Models/` with active record pattern
-- **Views**: Twig templates in `resources/views/` with layouts and partials support
+- **Views**: Latte templates in `resources/views/` with layouts and partials support
 - **CLI**: Built-in command system in `huckabuild-cli/` for common operations
 
 ### Development Workflow
@@ -204,7 +204,7 @@ This section provides comprehensive context for AI agents working with Huckabuil
 
 ### Technical Decisions
 - SQLite chosen for simplicity and zero-config deployment
-- Twig templating for secure, flexible view rendering
+- Latte templating for secure, flexible view rendering
 - CLI-first approach for better developer experience
 - No external dependencies beyond PHP core and SQLite
 

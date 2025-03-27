@@ -18,14 +18,14 @@ class PageAdminController
     public function index(Request $request, Response $response)
     {
         $pages = Page::orderBy('created_at', 'desc')->get();
-        return $this->container->get('view')->render($response, 'admin/pages/index.twig', [
+        return $this->container->get('view')->render($response, 'admin/pages/index.latte', [
             'pages' => $pages
         ]);
     }
 
     public function create(Request $request, Response $response)
     {
-        return $this->container->get('view')->render($response, 'admin/pages/create.twig');
+        return $this->container->get('view')->render($response, 'admin/pages/create.latte');
     }
 
     public function store(Request $request, Response $response)
@@ -44,7 +44,7 @@ class PageAdminController
     public function edit(Request $request, Response $response, $args)
     {
         $page = Page::findOrFail($args['id']);
-        return $this->container->get('view')->render($response, 'admin/pages/edit.twig', [
+        return $this->container->get('view')->render($response, 'admin/pages/edit.latte', [
             'page' => $page
         ]);
     }

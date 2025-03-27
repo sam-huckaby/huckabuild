@@ -1,24 +1,27 @@
-{% extends "layouts/admin.twig" %}
+{layout "../../layouts/admin.latte"}
 
-{% block content %}
+{block content}
 <div class="min-h-screen bg-gray-50">
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <!-- Header Section -->
         <div class="px-4 py-5 sm:px-0">
-            <h2 class="text-3xl font-bold text-gray-900">Create New Page</h2>
+            <h2 class="text-3xl font-bold text-gray-900">Edit Page</h2>
         </div>
 
         <!-- Form Section -->
         <div class="mt-8">
             <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <form action="/admin/pages" method="POST">
+                    <form action="/admin/pages/{$page->id}" method="POST">
+                        <input type="hidden" name="_METHOD" value="PUT">
+                        
                         <div class="space-y-6">
                             <div>
                                 <label for="title" class="block text-sm font-medium text-gray-700">Page Title</label>
                                 <div class="mt-1">
                                     <input type="text" name="title" id="title" required
+                                           value="{$page->title}"
                                            class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
                                            placeholder="Enter page title">
                                 </div>
@@ -30,7 +33,7 @@
                                 <div class="mt-1">
                                     <textarea id="content" name="content" rows="15"
                                               class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md code-editor"
-                                              placeholder="Enter page content"></textarea>
+                                              placeholder="Enter page content">{$page->content}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +43,7 @@
                                 Cancel
                             </a>
                             <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#ff7700] hover:bg-[#e66b00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
-                                Create Page
+                                Update Page
                             </button>
                         </div>
                     </form>
@@ -71,4 +74,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-{% endblock %} 
+{/block} 

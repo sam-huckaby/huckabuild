@@ -18,14 +18,14 @@ class UserAdminController
     public function index(Request $request, Response $response)
     {
         $users = User::orderBy('created_at', 'desc')->get();
-        return $this->container->get('view')->render($response, 'admin/users/index.twig', [
+        return $this->container->get('view')->render($response, 'admin/users/index.latte', [
             'users' => $users
         ]);
     }
 
     public function create(Request $request, Response $response)
     {
-        return $this->container->get('view')->render($response, 'admin/users/create.twig');
+        return $this->container->get('view')->render($response, 'admin/users/create.latte');
     }
 
     public function store(Request $request, Response $response)
@@ -47,7 +47,7 @@ class UserAdminController
     public function edit(Request $request, Response $response, $args)
     {
         $user = User::findOrFail($args['id']);
-        return $this->container->get('view')->render($response, 'admin/users/edit.twig', [
+        return $this->container->get('view')->render($response, 'admin/users/edit.latte', [
             'user' => $user
         ]);
     }

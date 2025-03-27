@@ -20,7 +20,7 @@ class MenuAdminController
     public function index(Request $request, Response $response)
     {
         $menus = Menu::with('items')->get();
-        return $this->container->get('view')->render($response, 'admin/menus/index.twig', [
+        return $this->container->get('view')->render($response, 'admin/menus/index.latte', [
             'menus' => $menus
         ]);
     }
@@ -28,7 +28,7 @@ class MenuAdminController
     public function create(Request $request, Response $response)
     {
         $pages = Page::all();
-        return $this->container->get('view')->render($response, 'admin/menus/create.twig', [
+        return $this->container->get('view')->render($response, 'admin/menus/create.latte', [
             'pages' => $pages
         ]);
     }
@@ -61,7 +61,7 @@ class MenuAdminController
         $menu = Menu::with('items')->findOrFail($args['id']);
         $pages = Page::all();
         
-        return $this->container->get('view')->render($response, 'admin/menus/edit.twig', [
+        return $this->container->get('view')->render($response, 'admin/menus/edit.latte', [
             'menu' => $menu,
             'pages' => $pages
         ]);
