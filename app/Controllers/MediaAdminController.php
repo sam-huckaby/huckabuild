@@ -9,7 +9,13 @@ use Slim\Psr7\UploadedFile;
 
 class MediaAdminController
 {
+    private $container;
     private $uploadDirectory = __DIR__ . '/../../storage/media';
+
+    public function __construct(\Psr\Container\ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
 
     public function index(Request $request, Response $response)
     {

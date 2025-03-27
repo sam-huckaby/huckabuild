@@ -1,31 +1,83 @@
 {% extends "layouts/admin.twig" %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="huckabuild-header">Upload Files</h1>
+<div class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-2xl font-bold text-[#ff7700]">Huckabuild</h1>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="/admin/dashboard" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Dashboard
+                        </a>
+                        <a href="/admin/pages" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Pages
+                        </a>
+                        <a href="/admin/menus" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Menus
+                        </a>
+                        <a href="/admin/media" class="border-[#ff7700] text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Media
+                        </a>
+                        <a href="/admin/settings" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Settings
+                        </a>
+                        <a href="/admin/users" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Users
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="px-4 py-5 sm:px-0">
+            <h2 class="text-3xl font-bold text-gray-900">Upload Files</h2>
+        </div>
+
+        <!-- Form Section -->
+        <div class="mt-8">
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
                     <form action="/admin/media" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="file" class="form-label">Choose Files</label>
-                            <input type="file" class="form-control" id="file" name="file" required>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="file" class="block text-sm font-medium text-gray-700">Choose Files</label>
+                                <div class="mt-1">
+                                    <input type="file" id="file" name="file" required
+                                           class="block w-full text-sm text-gray-500
+                                                  file:mr-4 file:py-2 file:px-4
+                                                  file:rounded-md file:border-0
+                                                  file:text-sm file:font-medium
+                                                  file:bg-[#ff7700] file:text-white
+                                                  hover:file:bg-[#e66b00]">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="description" class="block text-sm font-medium text-gray-700">Description (optional)</label>
+                                <div class="mt-1">
+                                    <textarea id="description" name="description" rows="3"
+                                              class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
+                                              placeholder="Enter a description for the file"></textarea>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description (optional)</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                        </div>
-
-                        <div class="text-end">
-                            <a href="/admin/media" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-huckabuild">Upload</button>
+                        <div class="mt-6 flex justify-end space-x-3">
+                            <a href="/admin/media" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
+                                Cancel
+                            </a>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#ff7700] hover:bg-[#e66b00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
+                                Upload
+                            </button>
                         </div>
                     </form>
                 </div>

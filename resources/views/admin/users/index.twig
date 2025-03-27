@@ -1,55 +1,92 @@
 {% extends "layouts/admin.twig" %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="huckabuild-header">Users</h1>
-        <a href="/admin/users/create" class="btn btn-huckabuild">
-            <i class="bi bi-person-plus"></i> New User
-        </a>
-    </div>
+<div class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-2xl font-bold text-[#ff7700]">Huckabuild</h1>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="/admin/dashboard" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Dashboard
+                        </a>
+                        <a href="/admin/pages" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Pages
+                        </a>
+                        <a href="/admin/settings" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Settings
+                        </a>
+                        <a href="/admin/users" class="border-[#ff7700] text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Users
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <div class="card">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Display Name</th>
-                            <th>Username</th>
-                            <th>Last Login</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users %}
-                        <tr>
-                            <td>{{ user.display_name }}</td>
-                            <td>{{ user.username }}</td>
-                            <td>{{ user.last_login ? user.last_login|date("M d, Y H:i") : 'Never' }}</td>
-                            <td>
-                                {% if user.password_reset_required %}
-                                    <span class="badge bg-warning">Password Reset Required</span>
-                                {% else %}
-                                    <span class="badge bg-success">Active</span>
-                                {% endif %}
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a href="/admin/users/{{ user.id }}" class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <button type="button" class="btn btn-sm btn-outline-danger" 
-                                            onclick="confirmDelete({{ user.id }})">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="px-4 py-5 sm:px-0">
+            <div class="flex justify-between items-center">
+                <h2 class="text-3xl font-bold text-gray-900">Users</h2>
+                <a href="/admin/users/create" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#ff7700] hover:bg-[#e66b00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
+                    <i class="bi bi-person-plus mr-2"></i>New User
+                </a>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="mt-8">
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Display Name</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Login</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for user in users %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ user.display_name }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ user.username }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ user.last_login ? user.last_login|date("M d, Y H:i") : 'Never' }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {% if user.password_reset_required %}
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                            Password Reset Required
+                                        </span>
+                                    {% else %}
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            Active
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div class="flex justify-end space-x-2">
+                                        <a href="/admin/users/{{ user.id }}" class="text-[#ff7700] hover:text-[#e66b00]">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <button type="button" onclick="confirmDelete({{ user.id }})" class="text-red-600 hover:text-red-900">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

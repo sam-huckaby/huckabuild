@@ -1,42 +1,88 @@
 {% extends "layouts/admin.twig" %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="huckabuild-header">Create New User</h1>
+<div class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-2xl font-bold text-[#ff7700]">Huckabuild</h1>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="/admin/dashboard" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Dashboard
+                        </a>
+                        <a href="/admin/pages" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Pages
+                        </a>
+                        <a href="/admin/settings" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Settings
+                        </a>
+                        <a href="/admin/users" class="border-[#ff7700] text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Users
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="px-4 py-5 sm:px-0">
+            <h2 class="text-3xl font-bold text-gray-900">Create New User</h2>
+        </div>
+
+        <!-- Form Section -->
+        <div class="mt-8">
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
                     <form action="/admin/users" method="POST">
-                        <div class="mb-3">
-                            <label for="display_name" class="form-label">Display Name</label>
-                            <input type="text" class="form-control" id="display_name" name="display_name" 
-                                   maxlength="100" required>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="display_name" class="block text-sm font-medium text-gray-700">Display Name</label>
+                                <div class="mt-1">
+                                    <input type="text" name="display_name" id="display_name" maxlength="100" required
+                                           class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
+                                           placeholder="Enter display name">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                                <div class="mt-1">
+                                    <input type="text" name="username" id="username" maxlength="100" required
+                                           class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
+                                           placeholder="Enter username">
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">This will be used for logging in. Maximum 100 characters.</p>
+                            </div>
+
+                            <div class="rounded-md bg-blue-50 p-4">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="bi bi-info-circle text-blue-400"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-blue-700">
+                                            A secure password will be automatically generated and sent to the user.
+                                            They will be required to change it on their first login.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" 
-                                   maxlength="100" required>
-                            <small class="text-muted">
-                                This will be used for logging in. Maximum 100 characters.
-                            </small>
-                        </div>
-
-                        <div class="alert alert-info">
-                            <i class="bi bi-info-circle"></i>
-                            A secure password will be automatically generated and sent to the user.
-                            They will be required to change it on their first login.
-                        </div>
-
-                        <div class="text-end">
-                            <a href="/admin/users" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-huckabuild">Create User</button>
+                        <div class="mt-6 flex justify-end space-x-3">
+                            <a href="/admin/users" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
+                                Cancel
+                            </a>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#ff7700] hover:bg-[#e66b00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
+                                Create User
+                            </button>
                         </div>
                     </form>
                 </div>

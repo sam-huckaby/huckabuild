@@ -1,50 +1,92 @@
 {% extends "layouts/admin.twig" %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="huckabuild-header">Media Library</h1>
-        <a href="/admin/media/create" class="btn btn-huckabuild">
-            <i class="bi bi-cloud-upload"></i> Upload Files
-        </a>
-    </div>
-
-    <div class="row">
-        {% for file in media %}
-        <div class="col-md-4 col-lg-3 mb-4">
-            <div class="card h-100">
-                {% if file.mime_type starts with 'image/' %}
-                <img src="{{ file.file_path }}" class="card-img-top" alt="{{ file.original_filename }}">
-                {% else %}
-                <div class="card-img-top text-center py-4 bg-light">
-                    <i class="bi bi-file-earmark-text display-1"></i>
-                </div>
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title text-truncate">{{ file.original_filename }}</h5>
-                    <p class="card-text small text-muted">
-                        {{ (file.file_size / 1024)|round(2) }} KB
-                        <br>
-                        {{ file.mime_type }}
-                    </p>
-                    <div class="btn-group w-100">
-                        <button type="button" class="btn btn-sm btn-outline-primary" 
-                                onclick="copyPath('{{ file.file_path }}')">
-                            <i class="bi bi-clipboard"></i>
-                        </button>
-                        <a href="{{ file.file_path }}" class="btn btn-sm btn-outline-secondary" 
-                           target="_blank">
-                            <i class="bi bi-eye"></i>
+<div class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-2xl font-bold text-[#ff7700]">Huckabuild</h1>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="/admin/dashboard" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Dashboard
                         </a>
-                        <button type="button" class="btn btn-sm btn-outline-danger" 
-                                onclick="confirmDelete({{ file.id }})">
-                            <i class="bi bi-trash"></i>
-                        </button>
+                        <a href="/admin/pages" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Pages
+                        </a>
+                        <a href="/admin/menus" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Menus
+                        </a>
+                        <a href="/admin/media" class="border-[#ff7700] text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Media
+                        </a>
+                        <a href="/admin/settings" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Settings
+                        </a>
+                        <a href="/admin/users" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Users
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="px-4 py-5 sm:px-0">
+            <div class="flex justify-between items-center">
+                <h2 class="text-3xl font-bold text-gray-900">Media Library</h2>
+                <a href="/admin/media/create" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#ff7700] hover:bg-[#e66b00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
+                    <i class="bi bi-cloud-upload mr-2"></i>Upload Files
+                </a>
+            </div>
+        </div>
+
+        <!-- Media Grid -->
+        <div class="mt-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for file in media %}
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    {% if file.mime_type starts with 'image/' %}
+                    <div class="aspect-w-16 aspect-h-9">
+                        <img src="{{ file.file_path }}" class="object-cover w-full h-full" alt="{{ file.original_filename }}">
+                    </div>
+                    {% else %}
+                    <div class="aspect-w-16 aspect-h-9 bg-gray-50 flex items-center justify-center">
+                        <i class="bi bi-file-earmark-text text-6xl text-gray-400"></i>
+                    </div>
+                    {% endif %}
+                    <div class="p-4">
+                        <h3 class="text-sm font-medium text-gray-900 truncate">{{ file.original_filename }}</h3>
+                        <p class="mt-1 text-sm text-gray-500">
+                            {{ (file.file_size / 1024)|round(2) }} KB
+                            <br>
+                            {{ file.mime_type }}
+                        </p>
+                        <div class="mt-4 flex space-x-2">
+                            <button type="button" onclick="copyPath('{{ file.file_path }}')"
+                                    class="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
+                                <i class="bi bi-clipboard mr-1.5"></i>Copy Path
+                            </button>
+                            <a href="{{ file.file_path }}" target="_blank"
+                               class="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
+                                <i class="bi bi-eye mr-1.5"></i>View
+                            </a>
+                            <button type="button" onclick="confirmDelete({{ file.id }})"
+                                    class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                <i class="bi bi-trash mr-1.5"></i>Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 

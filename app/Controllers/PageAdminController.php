@@ -8,6 +8,13 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class PageAdminController
 {
+    private $container;
+
+    public function __construct(\Psr\Container\ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function index(Request $request, Response $response)
     {
         $pages = Page::orderBy('created_at', 'desc')->get();

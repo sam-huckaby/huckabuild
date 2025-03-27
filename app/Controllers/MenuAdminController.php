@@ -10,6 +10,13 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class MenuAdminController
 {
+    private $container;
+
+    public function __construct(\Psr\Container\ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function index(Request $request, Response $response)
     {
         $menus = Menu::with('items')->get();

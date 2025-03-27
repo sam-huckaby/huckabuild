@@ -8,6 +8,13 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class UserAdminController
 {
+    private $container;
+
+    public function __construct(\Psr\Container\ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function index(Request $request, Response $response)
     {
         $users = User::orderBy('created_at', 'desc')->get();

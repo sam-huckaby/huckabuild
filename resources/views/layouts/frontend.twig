@@ -20,9 +20,18 @@
                     {% for item in menu_items %}
                         <a href="{{ item.url }}" class="text-gray-300 hover:text-white transition-colors">{{ item.title }}</a>
                     {% endfor %}
-                    <a href="/login" class="text-gray-300 hover:text-white transition-colors">
-                        <i class="bi bi-person-circle text-xl"></i>
-                    </a>
+                    {% if auth.isLoggedIn %}
+                        <a href="/admin" class="text-gray-300 hover:text-white transition-colors mr-4">
+                            <span>{{ auth.displayName }}</span>
+                        </a>
+                        <a href="/logout" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="bi bi-box-arrow-right text-xl"></i>
+                        </a>
+                    {% else %}
+                        <a href="/login" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="bi bi-person-circle text-xl"></i>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
