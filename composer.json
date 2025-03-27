@@ -33,10 +33,12 @@
         }
     },
     "scripts": {
-        "dev": "php bin/init-db.php && npx concurrently \"php -S localhost:8000 -t public\" \"npm run watch\"",
+        "dev": "npx concurrently \"php -S localhost:8000 -t public\" \"npm run watch\"",
         "install-all": "npx concurrently \"composer install\" \"npm install\"",
         "post-create-project-cmd": [
-            "php -r \"copy('.env.example', '.env');\""
+            "php -r \"copy('.env.example', '.env');\"",
+            "php bin/init-db.php",
+            "php bin/create-admin.php"
         ]
     }
 } 
