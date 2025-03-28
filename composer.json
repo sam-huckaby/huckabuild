@@ -33,7 +33,10 @@
         }
     },
     "scripts": {
-        "dev": "npx concurrently --kill-others-on-fail --handle-input --prefix-colors \"cyan.bold,green.bold\" \"php -S localhost:8000 -t public\" \"npm run watch\"",
+        "dev": [
+            "npm run build",
+            "npx concurrently --kill-others-on-fail --handle-input --prefix-colors \"cyan.bold,green.bold\" \"php -S localhost:8000 -t build\" \"npm run watch\""
+        ],
         "install-all": "npx concurrently \"composer install\" \"npm install\"",
         "post-create-project-cmd": [
             "php -r \"copy('.env.example', '.env');\"",

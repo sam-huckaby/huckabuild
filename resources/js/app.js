@@ -1,3 +1,1 @@
-import '../css/app.css' 
-
-// Add your JavaScript code here
+// Write your JavaScript code here
