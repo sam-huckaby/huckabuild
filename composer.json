@@ -39,6 +39,7 @@
         ],
         "install-all": "npx concurrently \"composer install\" \"npm install\"",
         "post-create-project-cmd": [
+            "npm install",
             "php -r \"copy('.env.example', '.env');\"",
             "php bin/init-db.php",
             "php bin/create-admin.php"

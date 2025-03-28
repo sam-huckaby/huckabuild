@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/vendor.css">
 </head>
-<body class="bg-white">
+<body class="bg-white min-h-screen flex flex-col">
     <!-- Navigation -->
     <nav class="bg-gray-900 text-white">
         <div class="container mx-auto px-4">
@@ -47,12 +47,12 @@
     </nav>
 
     <!-- Main content -->
-    <main>
+    <main class="flex-grow">
         {include content}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-900 text-white py-12 mt-auto">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-8 md:mb-0">
