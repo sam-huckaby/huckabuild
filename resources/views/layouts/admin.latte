@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-gray-50">
+<html lang="en" class="h-full bg-gray-50" data-bs-theme="{$theme_mode ?? 'light'}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huckabuild Admin</title>
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body class="h-full">
@@ -36,10 +36,25 @@
                         </div>
                     </div>
                     <div class="flex items-center">
-                        <a href="/logout" class="text-gray-500 hover:text-gray-700 inline-flex items-center px-3 py-2 text-sm font-medium">
-                            <i class="bi bi-box-arrow-right mr-2"></i>
-                            Logout
-                        </a>
+                        <div class="relative">
+                            <button type="button" class="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true" data-dropdown-toggle="user-dropdown">
+                                <i class="bi bi-person-circle text-xl"></i>
+                            </button>
+                            <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" id="user-dropdown">
+                                <div class="px-4 py-2 text-sm text-gray-700 border-b">
+                                    {$user->username ?? 'User'}
+                                </div>
+                                <a href="/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">
+                                    <i class="bi bi-eye mr-2"></i>
+                                    View Site
+                                </a>
+                                <div class="border-t border-gray-100"></div>
+                                <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">
+                                    <i class="bi bi-box-arrow-right mr-2"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,16 +64,6 @@
         <main class="flex-1">
             <div class="py-6">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                    <div class="flex justify-between items-center">
-                        <h1 class="text-2xl font-semibold text-gray-900">{$page_title ?? 'Admin Dashboard'}</h1>
-                        <a href="/" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
-                            <i class="bi bi-eye mr-2"></i>
-                            View Site
-                        </a>
-                    </div>
-                </div>
-
-                <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                     {include content}
                 </div>
             </div>
@@ -66,5 +71,22 @@
     </div>
 
     <script src="/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userMenuButton = document.getElementById('user-menu-button');
+            const userDropdown = document.getElementById('user-dropdown');
+
+            userMenuButton.addEventListener('click', function() {
+                userDropdown.classList.toggle('hidden');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!userMenuButton.contains(event.target) && !userDropdown.contains(event.target)) {
+                    userDropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

@@ -22,6 +22,22 @@ export default defineConfig({
     }
   },
   css: {
-    postcss: './postcss.config.js'
-  }
+    postcss: './postcss.config.js',
+    modules: {
+      localsConvention: 'camelCase'
+    }
+  },
+  optimizeDeps: {
+    include: ['tailwindcss']
+  },
+  server: {
+    watch: {
+      usePolling: true,
+      interval: 100
+    }
+  },
+  resolve: {
+    conditions: ['module', 'browser', 'development|production']
+  },
+  plugins: []
 }) 

@@ -8,14 +8,14 @@ use Huckabuild\Middleware\ViewAuthMiddleware;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-// Start session
-session_start();
-
 // Configure session security
 ini_set('session.cookie_httponly', 1);
 ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_secure', isset($_SERVER['HTTPS']));
 ini_set('session.cookie_samesite', 'Lax');
+
+// Start session
+session_start();
 
 // Load environment variables
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
