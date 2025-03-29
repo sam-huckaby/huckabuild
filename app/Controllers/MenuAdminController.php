@@ -21,7 +21,8 @@ class MenuAdminController
     {
         $menus = Menu::with('items')->get();
         return $this->container->get('view')->render($response, 'admin/menus/index.latte', [
-            'menus' => $menus
+            'menus' => $menus,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 
@@ -29,7 +30,8 @@ class MenuAdminController
     {
         $pages = Page::all();
         return $this->container->get('view')->render($response, 'admin/menus/create.latte', [
-            'pages' => $pages
+            'pages' => $pages,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 
@@ -63,7 +65,8 @@ class MenuAdminController
         
         return $this->container->get('view')->render($response, 'admin/menus/edit.latte', [
             'menu' => $menu,
-            'pages' => $pages
+            'pages' => $pages,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 

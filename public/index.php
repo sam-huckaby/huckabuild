@@ -6,6 +6,7 @@ use Huckabuild\Services\LatteService;
 use Psr\Container\ContainerInterface;
 use Huckabuild\Middleware\ViewAuthMiddleware;
 use Huckabuild\Middleware\MethodOverrideMiddleware;
+use Huckabuild\Middleware\CsrfMiddleware;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -44,12 +45,13 @@ $app = AppFactory::create();
 // Add middleware
 $app->add(new ViewAuthMiddleware($container->get('view')));
 $app->add(new MethodOverrideMiddleware());
+$app->add(new CsrfMiddleware());
 $app->addBodyParsingMiddleware();
 $app->addErrorMiddleware(true, true, true);
 
-// Include routes
-require __DIR__ . '/../routes/web.php';
+// Include routes - admin routes must be registered before web routes
 require __DIR__ . '/../routes/admin.php';
+require __DIR__ . '/../routes/web.php';
 
 // Run app
 $app->run(); 

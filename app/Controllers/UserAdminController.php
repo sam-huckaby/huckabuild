@@ -19,13 +19,16 @@ class UserAdminController
     {
         $users = User::orderBy('created_at', 'desc')->get();
         return $this->container->get('view')->render($response, 'admin/users/index.latte', [
-            'users' => $users
+            'users' => $users,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 
     public function create(Request $request, Response $response)
     {
-        return $this->container->get('view')->render($response, 'admin/users/create.latte');
+        return $this->container->get('view')->render($response, 'admin/users/create.latte', [
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
+        ]);
     }
 
     public function store(Request $request, Response $response)
@@ -48,7 +51,8 @@ class UserAdminController
     {
         $user = User::findOrFail($args['id']);
         return $this->container->get('view')->render($response, 'admin/users/edit.latte', [
-            'user' => $user
+            'user' => $user,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 

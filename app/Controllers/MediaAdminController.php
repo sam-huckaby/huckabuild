@@ -21,13 +21,16 @@ class MediaAdminController
     {
         $media = Media::orderBy('created_at', 'desc')->get();
         return $this->container->get('view')->render($response, 'admin/media/index.latte', [
-            'media' => $media
+            'media' => $media,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 
     public function create(Request $request, Response $response)
     {
-        return $this->container->get('view')->render($response, 'admin/media/create.latte');
+        return $this->container->get('view')->render($response, 'admin/media/create.latte', [
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
+        ]);
     }
 
     public function store(Request $request, Response $response)
@@ -62,7 +65,8 @@ class MediaAdminController
     {
         $media = Media::findOrFail($args['id']);
         return $this->container->get('view')->render($response, 'admin/media/edit.latte', [
-            'media' => $media
+            'media' => $media,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 

@@ -36,7 +36,8 @@ class AuthController
 
         return $this->container->get('view')->render($response, 'auth/login.latte', [
             'menu_items' => $menuItems,
-            'auth' => $auth
+            'auth' => $auth,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 

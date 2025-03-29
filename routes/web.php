@@ -7,7 +7,6 @@ use Slim\Routing\RouteCollectorProxy;
 
 // Public routes
 $app->get('/', [PageController::class, 'home']);
-$app->get('/page/{slug}', [PageController::class, 'show']);
 
 // Auth routes
 $app->group('/login', function (RouteCollectorProxy $group) {
@@ -15,4 +14,18 @@ $app->group('/login', function (RouteCollectorProxy $group) {
     $group->post('', [AuthController::class, 'login']);
 })->add(new GuestMiddleware());
 
-$app->get('/logout', [AuthController::class, 'logout']); 
+$app->get('/logout', [AuthController::class, 'logout']);
+
+// Custom pages route - must be last and exclude reserved paths
+$app->get('/{slug}', [PageController::class, 'show'])
+    ->setName('page.show')
+    ->setArgument('slug', '[a-zA-Z0-9-]+')
+    ->add(function ($request, $handler) {
+        $slug = $request->getAttribute('slug');
+        // List of reserved paths that should not be handled by this route
+        $reservedPaths = ['admin', 'login', 'logout', 'docs', 'api'];
+        if (in_array($slug, $reservedPaths)) {
+            throw new \Exception('Page not found');
+        }
+        return $handler->handle($request);
+    }); 

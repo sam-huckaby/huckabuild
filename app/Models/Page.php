@@ -12,7 +12,8 @@ class Page extends Model
         'title',
         'slug',
         'content',
-        'status'
+        'status',
+        'is_landing_page'
     ];
 
     public static function count()

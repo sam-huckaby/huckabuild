@@ -50,6 +50,7 @@
                                         </a>
                                         {if !$menu->is_active}
                                         <form action="/admin/menus/{$menu->id}/activate" method="POST" class="inline">
+                                            <input type="hidden" name="csrf_token" value="{$csrf_token}">
                                             <button type="submit" class="text-green-600 hover:text-green-900">
                                                 <i class="bi bi-check-lg"></i>
                                             </button>
@@ -72,6 +73,7 @@
 
 <form id="delete-form" method="POST" style="display: none;">
     <input type="hidden" name="_METHOD" value="DELETE">
+    <input type="hidden" name="csrf_token" value="{$csrf_token}">
 </form>
 
 <script n:syntax=off>

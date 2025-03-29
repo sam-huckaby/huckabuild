@@ -14,6 +14,7 @@
             <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <form action="/admin/media" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" value="{$csrf_token}">
                         <div class="space-y-6">
                             <div>
                                 <label for="file" class="block text-sm font-medium text-gray-700">Choose Files</label>

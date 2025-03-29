@@ -19,13 +19,16 @@ class PageAdminController
     {
         $pages = Page::orderBy('created_at', 'desc')->get();
         return $this->container->get('view')->render($response, 'admin/pages/index.latte', [
-            'pages' => $pages
+            'pages' => $pages,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 
     public function create(Request $request, Response $response)
     {
-        return $this->container->get('view')->render($response, 'admin/pages/create.latte');
+        return $this->container->get('view')->render($response, 'admin/pages/create.latte', [
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
+        ]);
     }
 
     public function store(Request $request, Response $response)
@@ -45,7 +48,8 @@ class PageAdminController
     {
         $page = Page::findOrFail($args['id']);
         return $this->container->get('view')->render($response, 'admin/pages/edit.latte', [
-            'page' => $page
+            'page' => $page,
+            'csrf_token' => $_SESSION['csrf_token'] ?? ''
         ]);
     }
 
@@ -67,6 +71,23 @@ class PageAdminController
         $page->delete();
 
         return $response->withHeader('Location', '/admin/pages')->withStatus(302);
+    }
+
+    public function setLanding(Request $request, Response $response, $args)
+    {
+        $page = Page::findOrFail($args['id']);
+        
+        // First, unset any existing landing page
+        Page::where('is_landing_page', true)->update(['is_landing_page' => false]);
+        
+        // Set the new landing page
+        $page->is_landing_page = true;
+        $page->save();
+
+        $response->getBody()->write(json_encode(['success' => true]));
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
     }
 
     private function createSlug($title)

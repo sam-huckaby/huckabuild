@@ -21,6 +21,7 @@ $app->group('/admin', function (RouteCollectorProxy $group) {
         $group->get('/{id}', [PageAdminController::class, 'edit']);
         $group->put('/{id}', [PageAdminController::class, 'update']);
         $group->delete('/{id}', [PageAdminController::class, 'delete']);
+        $group->post('/{id}/set-landing', [PageAdminController::class, 'setLanding']);
     });
     
     // Menus management

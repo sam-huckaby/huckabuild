@@ -22,6 +22,12 @@ class PageController
     {
         $this->view->setRequest($request);
         
+        // Load the landing page
+        $page = Page::where('is_landing_page', true)->first();
+        if (!$page) {
+            throw new \Exception('No landing page set');
+        }
+        
         // Load active menu items
         $activeMenu = Menu::where('is_active', true)->first();
         $menuItems = $activeMenu ? MenuItem::where('menu_id', $activeMenu->id)
@@ -32,7 +38,9 @@ class PageController
                 return $item;
             }) : [];
 
-        return $this->view->render($response, 'pages/home', [
+        return $this->view->render($response, 'pages/show', [
+            'page' => $page,
+            'page_title' => $page->title,
             'menu_items' => $menuItems
         ]);
     }
@@ -41,6 +49,12 @@ class PageController
     {
         $this->view->setRequest($request);
         $slug = $args['slug'];
+        
+        // Don't allow viewing admin pages directly
+        if (str_starts_with($slug, 'admin')) {
+            throw new \Exception('Page not found');
+        }
+        
         $page = Page::where('slug', $slug)->firstOrFail();
         
         // Load active menu items

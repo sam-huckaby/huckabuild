@@ -1,10 +1,7 @@
 {layout '../layouts/frontend.latte'}
 
 {block content}
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-6">{$page->title}</h1>
-    <div class="prose">
+<div>
         {$page->content|noescape}
-    </div>
 </div>
 {/block} 
