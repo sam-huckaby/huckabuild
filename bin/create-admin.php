@@ -42,8 +42,8 @@ try {
     }
 
     // Insert new admin user
-    $stmt = $pdo->prepare("INSERT INTO users (display_name, username, password, password_reset_required) VALUES (?, ?, ?, ?)");
-    $stmt->execute(['Builder Admin', 'builder', $hashedPassword, 0]);
+    $stmt = $pdo->prepare("INSERT INTO users (display_name, username, email, password, password_reset_required) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute(['Builder Admin', 'builder', 'builder@example.com', $hashedPassword, 0]);
 
     echo "\n=== Admin User Created Successfully ===\n";
     echo "Username: builder\n";

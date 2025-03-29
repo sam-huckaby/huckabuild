@@ -6,20 +6,22 @@
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <!-- Header Section -->
         <div class="px-4 py-5 sm:px-0">
-            <h2 class="text-3xl font-bold text-gray-900">Create New User</h2>
+            <h2 class="text-3xl font-bold text-gray-900">Edit User</h2>
         </div>
 
         <!-- Form Section -->
         <div class="mt-8">
             <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <form action="/admin/users" method="POST">
+                    <form action="/admin/users/{$user->id}" method="POST">
+                        <input type="hidden" name="_METHOD" value="PUT">
                         <input type="hidden" name="csrf_token" value="{$csrf_token}">
                         <div class="space-y-6">
                             <div>
                                 <label for="display_name" class="block text-sm font-medium text-gray-700">Display Name</label>
                                 <div class="mt-1">
                                     <input type="text" name="display_name" id="display_name" maxlength="100" required
+                                           value="{$user->display_name}"
                                            class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
                                            placeholder="Enter display name">
                                 </div>
@@ -29,6 +31,7 @@
                                 <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
                                 <div class="mt-1">
                                     <input type="text" name="username" id="username" maxlength="100" required
+                                           value="{$user->username}"
                                            class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
                                            placeholder="Enter username">
                                 </div>
@@ -39,23 +42,33 @@
                                 <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
                                 <div class="mt-1">
                                     <input type="email" name="email" id="email" required
+                                           value="{$user->email}"
                                            class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
                                            placeholder="Enter email address">
                                 </div>
                                 <p class="mt-2 text-sm text-gray-500">This email will be used for password reset and notifications.</p>
                             </div>
 
-                            <div class="rounded-md bg-blue-50 p-4">
+                            <div class="rounded-md bg-yellow-50 p-4">
                                 <div class="flex">
                                     <div class="flex-shrink-0">
-                                        <i class="bi bi-info-circle text-blue-400"></i>
+                                        <i class="bi bi-exclamation-triangle text-yellow-400"></i>
                                     </div>
                                     <div class="ml-3">
-                                        <p class="text-sm text-blue-700">
-                                            A secure password will be automatically generated and sent to the user.
-                                            They will be required to change it on their first login.
+                                        <p class="text-sm text-yellow-700">
+                                            If you want to change the user's password, leave the password field empty.
+                                            A new password will be generated and sent to their email address.
                                         </p>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="password" class="block text-sm font-medium text-gray-700">New Password (Optional)</label>
+                                <div class="mt-1">
+                                    <input type="password" name="password" id="password"
+                                           class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
+                                           placeholder="Leave empty to keep current password">
                                 </div>
                             </div>
                         </div>
@@ -65,7 +78,7 @@
                                 Cancel
                             </a>
                             <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#ff7700] hover:bg-[#e66b00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
-                                Create User
+                                Update User
                             </button>
                         </div>
                     </form>

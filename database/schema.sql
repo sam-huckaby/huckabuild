@@ -3,6 +3,7 @@ CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     display_name VARCHAR(100) NOT NULL,
     username VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     password_reset_required BOOLEAN DEFAULT 1,
     last_login DATETIME,
