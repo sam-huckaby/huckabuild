@@ -5,6 +5,7 @@ use Slim\Factory\AppFactory;
 use Huckabuild\Services\LatteService;
 use Psr\Container\ContainerInterface;
 use Huckabuild\Middleware\ViewAuthMiddleware;
+use Huckabuild\Middleware\MethodOverrideMiddleware;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -42,6 +43,7 @@ $app = AppFactory::create();
 
 // Add middleware
 $app->add(new ViewAuthMiddleware($container->get('view')));
+$app->add(new MethodOverrideMiddleware());
 $app->addBodyParsingMiddleware();
 $app->addErrorMiddleware(true, true, true);
 

@@ -137,8 +137,8 @@
 </template>
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
-<script>
-let menuItemIndex = {count($menu->items)};
+<script n:syntax=double>
+let menuItemIndex = document.querySelectorAll('#menu-items .bg-white').length;
 
 function addMenuItem() {
     const template = document.getElementById('menu-item-template');

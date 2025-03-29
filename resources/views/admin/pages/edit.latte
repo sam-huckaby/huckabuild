@@ -29,6 +29,17 @@
                             </div>
 
                             <div>
+                                <label for="slug" class="block text-sm font-medium text-gray-700">Page Slug</label>
+                                <div class="mt-1">
+                                    <input type="text" name="slug" id="slug" required
+                                           value="{$page->slug}"
+                                           class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md"
+                                           placeholder="e.g., about-us, contact, services">
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">This will be used in the URL. Use lowercase letters, numbers, and hyphens only.</p>
+                            </div>
+
+                            <div>
                                 <label for="content" class="block text-sm font-medium text-gray-700">Page Content</label>
                                 <div class="mt-1">
                                     <textarea id="content" name="content" rows="15"

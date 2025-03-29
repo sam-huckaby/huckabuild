@@ -3,6 +3,8 @@
 namespace Huckabuild\Controllers;
 
 use Huckabuild\Models\User;
+use Huckabuild\Models\Menu;
+use Huckabuild\Models\MenuItem;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -17,7 +19,25 @@ class AuthController
 
     public function showLoginForm(Request $request, Response $response)
     {
-        return $this->container->get('view')->render($response, 'auth/login.latte');
+        // Load active menu items
+        $activeMenu = Menu::where('is_active', true)->first();
+        $menuItems = $activeMenu ? MenuItem::where('menu_id', $activeMenu->id)
+            ->orderBy('order_index')
+            ->get()
+            ->map(function($item) {
+                $item->url = $item->external_url ?? ($item->page ? '/' . $item->page->slug : '#');
+                return $item;
+            }) : [];
+
+        // Create auth object
+        $auth = new \stdClass();
+        $auth->isLoggedIn = false;
+        $auth->displayName = null;
+
+        return $this->container->get('view')->render($response, 'auth/login.latte', [
+            'menu_items' => $menuItems,
+            'auth' => $auth
+        ]);
     }
 
     public function login(Request $request, Response $response)
