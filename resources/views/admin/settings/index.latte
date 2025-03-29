@@ -1,0 +1,50 @@
+{layout '../../layouts/admin.latte'}
+
+{block content}
+<div class="min-h-screen bg-gray-50">
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="px-4 py-5 sm:px-0">
+            <h2 class="text-3xl font-bold text-gray-900">Site Settings</h2>
+            <p class="mt-1 text-sm text-gray-500">Configure your site's global settings and preferences.</p>
+        </div>
+
+        <!-- Settings Form -->
+        <div class="mt-8">
+            <div class="bg-white shadow rounded-lg">
+                <form method="post" action="/admin/settings" class="space-y-6 p-6">
+                    <input type="hidden" name="csrf_token" value="{$csrf_token}">
+                    
+                    <!-- Site Title -->
+                    <div>
+                        <label for="site_name" class="block text-sm font-medium text-gray-700">Site Title</label>
+                        <div class="mt-1">
+                            <input type="text" name="site_name" id="site_name" value="{$settings['site_name'] ?? ''}" 
+                                class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <p class="mt-2 text-sm text-gray-500">This is the name of your site that appears in the browser tab and other places.</p>
+                    </div>
+
+                    <!-- Session Key -->
+                    <div>
+                        <label for="session_key" class="block text-sm font-medium text-gray-700">Session Key</label>
+                        <div class="mt-1">
+                            <input type="text" name="session_key" id="session_key" value="{$settings['session_key'] ?? ''}" 
+                                class="shadow-sm focus:ring-[#ff7700] focus:border-[#ff7700] block w-full sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <p class="mt-2 text-sm text-gray-500">Changing this will invalidate all current user sessions. Use this to force all users to log in again.</p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button type="submit" 
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#ff7700] hover:bg-[#e66b00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]">
+                            Save Settings
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{/block} 

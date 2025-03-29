@@ -2,6 +2,7 @@
 
 use Huckabuild\Controllers\PageController;
 use Huckabuild\Controllers\AuthController;
+use Huckabuild\Controllers\Admin\SettingsController;
 use Huckabuild\Middleware\GuestMiddleware;
 use Slim\Routing\RouteCollectorProxy;
 
@@ -15,6 +16,12 @@ $app->group('/login', function (RouteCollectorProxy $group) {
 })->add(new GuestMiddleware());
 
 $app->get('/logout', [AuthController::class, 'logout']);
+
+// Admin routes
+$app->group('/admin', function (RouteCollectorProxy $group) {
+    $group->get('/settings', [SettingsController::class, 'index']);
+    $group->post('/settings', [SettingsController::class, 'update']);
+});
 
 // Custom pages route - must be last and exclude reserved paths
 $app->get('/{slug}', [PageController::class, 'show'])
