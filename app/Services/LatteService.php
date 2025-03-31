@@ -32,6 +32,7 @@ class LatteService
         // Add common data
         $data['theme_mode'] = $_ENV['THEME_MODE'] ?? 'light';
         $data['page_title'] = $data['page_title'] ?? 'Huckabuild Site';
+        $data['app_name'] = $_ENV['APP_NAME'] ?? 'Huckabuild';
         
         // Add request and auth data if request is set
         if ($this->request !== null) {
