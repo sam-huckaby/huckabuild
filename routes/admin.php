@@ -1,59 +1,60 @@
 <?php
 
-use Huckabuild\Controllers\AdminController;
-use Huckabuild\Controllers\PageAdminController;
-use Huckabuild\Controllers\MenuAdminController;
-use Huckabuild\Controllers\MediaAdminController;
-use Huckabuild\Controllers\UserAdminController;
+use Huckabuild\Controllers\Admin\DashboardController;
+use Huckabuild\Controllers\Admin\PageController;
+use Huckabuild\Controllers\Admin\MenuController;
+use Huckabuild\Controllers\Admin\MediaController;
+use Huckabuild\Controllers\Admin\UserController;
+use Huckabuild\Controllers\Admin\AuthController;
 use Huckabuild\Middleware\AuthMiddleware;
 use Slim\Routing\RouteCollectorProxy;
 
 // Admin routes
 $app->group('/admin', function (RouteCollectorProxy $group) {
     // Dashboard
-    $group->get('', [AdminController::class, 'dashboard']);
+    $group->get('', [DashboardController::class, 'dashboard']);
     
     // Pages management
     $group->group('/pages', function (RouteCollectorProxy $group) {
-        $group->get('', [PageAdminController::class, 'index']);
-        $group->get('/create', [PageAdminController::class, 'create']);
-        $group->post('', [PageAdminController::class, 'store']);
-        $group->get('/{id}', [PageAdminController::class, 'edit']);
-        $group->put('/{id}', [PageAdminController::class, 'update']);
-        $group->delete('/{id}', [PageAdminController::class, 'delete']);
-        $group->post('/{id}/set-landing', [PageAdminController::class, 'setLanding']);
+        $group->get('', [PageController::class, 'index']);
+        $group->get('/create', [PageController::class, 'create']);
+        $group->post('', [PageController::class, 'store']);
+        $group->get('/{id}', [PageController::class, 'edit']);
+        $group->put('/{id}', [PageController::class, 'update']);
+        $group->delete('/{id}', [PageController::class, 'delete']);
+        $group->post('/{id}/set-landing', [PageController::class, 'setLanding']);
     });
     
     // Menus management
     $group->group('/menus', function (RouteCollectorProxy $group) {
-        $group->get('', [MenuAdminController::class, 'index']);
-        $group->get('/create', [MenuAdminController::class, 'create']);
-        $group->post('', [MenuAdminController::class, 'store']);
-        $group->get('/{id}', [MenuAdminController::class, 'edit']);
-        $group->put('/{id}', [MenuAdminController::class, 'update']);
-        $group->delete('/{id}', [MenuAdminController::class, 'delete']);
-        $group->post('/{id}/activate', [MenuAdminController::class, 'activate']);
-        $group->post('/items/reorder', [MenuAdminController::class, 'reorderItems']);
+        $group->get('', [MenuController::class, 'index']);
+        $group->get('/create', [MenuController::class, 'create']);
+        $group->post('', [MenuController::class, 'store']);
+        $group->get('/{id}', [MenuController::class, 'edit']);
+        $group->put('/{id}', [MenuController::class, 'update']);
+        $group->delete('/{id}', [MenuController::class, 'delete']);
+        $group->post('/{id}/activate', [MenuController::class, 'activate']);
+        $group->post('/items/reorder', [MenuController::class, 'reorderItems']);
     });
     
     // Media management
     $group->group('/media', function (RouteCollectorProxy $group) {
-        $group->get('', [MediaAdminController::class, 'index']);
-        $group->get('/create', [MediaAdminController::class, 'create']);
-        $group->post('', [MediaAdminController::class, 'store']);
-        $group->get('/{id}', [MediaAdminController::class, 'edit']);
-        $group->put('/{id}', [MediaAdminController::class, 'update']);
-        $group->delete('/{id}', [MediaAdminController::class, 'delete']);
+        $group->get('', [MediaController::class, 'index']);
+        $group->get('/create', [MediaController::class, 'create']);
+        $group->post('', [MediaController::class, 'store']);
+        $group->get('/{id}', [MediaController::class, 'edit']);
+        $group->put('/{id}', [MediaController::class, 'update']);
+        $group->delete('/{id}', [MediaController::class, 'delete']);
     });
     
     // Users management
     $group->group('/users', function (RouteCollectorProxy $group) {
-        $group->get('', [UserAdminController::class, 'index']);
-        $group->get('/create', [UserAdminController::class, 'create']);
-        $group->post('', [UserAdminController::class, 'store']);
-        $group->get('/{id}', [UserAdminController::class, 'edit']);
-        $group->put('/{id}', [UserAdminController::class, 'update']);
-        $group->delete('/{id}', [UserAdminController::class, 'delete']);
+        $group->get('', [UserController::class, 'index']);
+        $group->get('/create', [UserController::class, 'create']);
+        $group->post('', [UserController::class, 'store']);
+        $group->get('/{id}', [UserController::class, 'edit']);
+        $group->put('/{id}', [UserController::class, 'update']);
+        $group->delete('/{id}', [UserController::class, 'delete']);
     });
     
     // Logout

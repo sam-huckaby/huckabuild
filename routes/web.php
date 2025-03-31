@@ -1,7 +1,7 @@
 <?php
 
 use Huckabuild\Controllers\PageController;
-use Huckabuild\Controllers\AuthController;
+use Huckabuild\Controllers\Admin\AuthController;
 use Huckabuild\Controllers\Admin\SettingsController;
 use Huckabuild\Middleware\GuestMiddleware;
 use Slim\Routing\RouteCollectorProxy;

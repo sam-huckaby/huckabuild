@@ -1,16 +1,16 @@
 <?php
 
-namespace Huckabuild\Controllers;
+namespace Huckabuild\Controllers\Admin;
 
 use Huckabuild\Models\Media;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Psr7\UploadedFile;
 
-class MediaAdminController
+class MediaController
 {
     private $container;
-    private $uploadDirectory = __DIR__ . '/../../storage/media';
+    private $uploadDirectory = __DIR__ . '/../../../storage/media';
 
     public function __construct(\Psr\Container\ContainerInterface $container)
     {
@@ -86,7 +86,7 @@ class MediaAdminController
         $media = Media::findOrFail($args['id']);
         
         // Delete the physical file
-        $filePath = __DIR__ . '/../../public' . $media->file_path;
+        $filePath = __DIR__ . '/../../../public' . $media->file_path;
         if (file_exists($filePath)) {
             unlink($filePath);
         }

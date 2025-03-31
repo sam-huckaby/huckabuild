@@ -101,7 +101,7 @@ INSERT INTO pages (slug, title, content, is_landing_page) VALUES
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-bold mb-4">Why Choose Huckabuild?</h2>
-            <p class="text-xl text-gray-600">Everything you need to build modern websites, nothing you don''t.</p>
+            <p class="text-xl text-gray-600">Everything you need to build modern websites, nothing you don''t. (Literally, there''s nothing else)</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

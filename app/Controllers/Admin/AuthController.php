@@ -1,6 +1,6 @@
 <?php
 
-namespace Huckabuild\Controllers;
+namespace Huckabuild\Controllers\Admin;
 
 use Huckabuild\Models\User;
 use Huckabuild\Models\Menu;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Huckabuild\Controllers;
+namespace Huckabuild\Controllers\Admin;
 
 use Huckabuild\Models\Page;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class PageAdminController
+class PageController
 {
     private $container;
 

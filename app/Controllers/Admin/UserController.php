@@ -1,12 +1,12 @@
 <?php
 
-namespace Huckabuild\Controllers;
+namespace Huckabuild\Controllers\Admin;
 
 use Huckabuild\Models\User;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class UserAdminController
+class UserController
 {
     private $container;
 
